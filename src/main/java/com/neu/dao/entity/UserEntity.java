@@ -1,15 +1,8 @@
 package com.neu.dao.entity;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.Date;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class UserEntity implements Serializable {
     private String id;
     private String username;
@@ -19,13 +12,13 @@ public class UserEntity implements Serializable {
     private String status;
     private String createdBy;
     private Date creationDate;
-    private String lastUpdateBy;
+    private String lastUpdatedBy;
     private Date lastUpdateDate;
 
     public UserEntity() {
     }
 
-    public UserEntity(String id, String username, String password, Date startTime, Date stopTime, String status, String createdBy, Date creationDate, String lastUpdateBy, Date lastUpdateDate) {
+    public UserEntity(String id, String username, String password, Date startTime, Date stopTime, String status, String createdBy, Date creationDate, String lastUpdatedBy, Date lastUpdateDate) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -34,7 +27,7 @@ public class UserEntity implements Serializable {
         this.status = status;
         this.createdBy = createdBy;
         this.creationDate = creationDate;
-        this.lastUpdateBy = lastUpdateBy;
+        this.lastUpdatedBy = lastUpdatedBy;
         this.lastUpdateDate = lastUpdateDate;
     }
 
@@ -102,12 +95,12 @@ public class UserEntity implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public String getLastUpdateBy() {
-        return lastUpdateBy;
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
     }
 
-    public void setLastUpdateBy(String lastUpdateBy) {
-        this.lastUpdateBy = lastUpdateBy;
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
     public Date getLastUpdateDate() {
@@ -129,7 +122,7 @@ public class UserEntity implements Serializable {
                 ", status='" + status + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", creationDate=" + creationDate +
-                ", lastUpdateBy='" + lastUpdateBy + '\'' +
+                ", lastUpdateBy='" + lastUpdatedBy + '\'' +
                 ", lastUpdateDate=" + lastUpdateDate +
                 '}';
     }

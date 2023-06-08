@@ -1,12 +1,5 @@
 package com.neu.beans;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class HttpResponseEntity {
     private String code;
     private Object data;

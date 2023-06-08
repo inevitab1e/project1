@@ -3,7 +3,6 @@ package com.neu.controller;
 import com.neu.beans.HttpResponseEntity;
 import com.neu.dao.entity.UserEntity;
 import com.neu.service.UserService;
-//import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "*", allowedHeaders = "Content-Type")//解决跨域问题
+//@CrossOrigin(origins = "*", allowedHeaders = "Content-Type")//解决跨域问题
 public class UserController {
     @Autowired
     private UserService userService;
