@@ -11,8 +11,16 @@ const fetchProjectList = () => {
     createdBy: $util.getItem('userInfo').username,
     projectName: $('#projectName').val()
   }
+
+  let url;
+  if (params.projectName === ""){
+    url = API_BASE_URL + '/queryProjectList';
+  } else {
+    url: API_BASE_URL + '/selectProjectInfo';
+  }
+
   $.ajax({
-    url: API_BASE_URL + '/queryProjectList',
+    url: url,
     type: "POST",
     data: JSON.stringify(params),
     dataType: "json",
