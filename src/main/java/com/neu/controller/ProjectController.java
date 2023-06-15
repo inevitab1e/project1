@@ -24,7 +24,6 @@ public class ProjectController {
             List<ProjectEntity> hasProject = projectService.queryProjectList(projectEntity);
             if (CollectionUtils.isEmpty(hasProject)) {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(hasProject.get(0));
                 httpResponseEntity.setMessage("无项目信息");
             } else {
                 httpResponseEntity.setCode("666");
@@ -38,12 +37,7 @@ public class ProjectController {
         return httpResponseEntity;
     }
 
-//    @RequestMapping(value = "/queryProjectList", method = RequestMethod.POST, headers = "Accept=application/json")
-//    public HttpResponseEntity queryProjectList(ProjectEntity projectEntity){
-//
-//    }
 
-    //添加项目(有问题 404)
     @RequestMapping(value = "/addProjectInfo", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponseEntity addProjectInfo(@RequestBody ProjectEntity projectEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();

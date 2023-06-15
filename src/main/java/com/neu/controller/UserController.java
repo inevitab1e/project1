@@ -26,7 +26,6 @@ public class UserController {
             List<UserEntity> hasUser = userService.selectUserInfo(userEntity);
             if(CollectionUtils.isEmpty(hasUser)) {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(hasUser.get(0));
                 httpResponseEntity.setMessage("用户名或者密码错误");
             }
             else{
@@ -49,7 +48,6 @@ public class UserController {
             List<UserEntity> hasUser = userService.queryUserList(userEntity);
             if(CollectionUtils.isEmpty(hasUser)) {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(hasUser.get(0));
                 httpResponseEntity.setMessage("无用户信息");
             }
             else{
