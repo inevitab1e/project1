@@ -17,4 +17,6 @@ public interface ProjectEntityMapper {
     int updateByPrimaryKeySelective(ProjectEntity projectEntity);
 
     int deleteProjectById(ProjectEntity projectEntity);
+
+    List<ProjectEntity> selectProjectInfo(ProjectEntity projectEntity);
 }

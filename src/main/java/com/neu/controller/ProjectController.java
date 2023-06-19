@@ -37,6 +37,30 @@ public class ProjectController {
         return httpResponseEntity;
     }
 
+    /**
+     * 通过项目名称查询项目列表
+     */
+    @RequestMapping(value = "/selectProjectInfo", method = RequestMethod.POST, headers = "Accept=application/json")
+    public HttpResponseEntity selectProjectInfo(@RequestBody ProjectEntity projectEntity){
+        HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
+        try{
+            List<ProjectEntity> hasProject = projectService.selectProjectInfo(projectEntity);
+
+            if(CollectionUtils.isEmpty(hasProject)){
+                httpResponseEntity.setCode("0");
+//                httpResponseEntity.setData(null);
+                httpResponseEntity.setMessage("无项目信息");
+            }else{
+                httpResponseEntity.setCode("666");
+                httpResponseEntity.setData(hasProject);
+                httpResponseEntity.setMessage("查询成功");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return  httpResponseEntity;
+    }
 
     @RequestMapping(value = "/addProjectInfo", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponseEntity addProjectInfo(@RequestBody ProjectEntity projectEntity) {
@@ -49,7 +73,7 @@ public class ProjectController {
                 httpResponseEntity.setMessage("创建成功");
             } else {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(0);
+//                httpResponseEntity.setData(0);
                 httpResponseEntity.setMessage("创建失败");
             }
         } catch (Exception e) {

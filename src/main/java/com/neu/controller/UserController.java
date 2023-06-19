@@ -20,21 +20,19 @@ public class UserController {
 
     //登录验证
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST, headers = "Accept=application/json")
-    public HttpResponseEntity userLogin(@RequestBody UserEntity userEntity){
+    public HttpResponseEntity userLogin(@RequestBody UserEntity userEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-        try{
+        try {
             List<UserEntity> hasUser = userService.selectUserInfo(userEntity);
-            if(CollectionUtils.isEmpty(hasUser)) {
+            if (CollectionUtils.isEmpty(hasUser)) {
                 httpResponseEntity.setCode("0");
                 httpResponseEntity.setMessage("用户名或者密码错误");
-            }
-            else{
+            } else {
                 httpResponseEntity.setCode("666");
                 httpResponseEntity.setData(hasUser);
                 httpResponseEntity.setMessage("登陆成功");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -42,21 +40,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/queryUserList", method = RequestMethod.POST, headers = "Accept=application/json")
-    public HttpResponseEntity queryUserList(@RequestBody UserEntity userEntity){
+    public HttpResponseEntity queryUserList(@RequestBody UserEntity userEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-        try{
+        try {
             List<UserEntity> hasUser = userService.queryUserList(userEntity);
-            if(CollectionUtils.isEmpty(hasUser)) {
+            if (CollectionUtils.isEmpty(hasUser)) {
                 httpResponseEntity.setCode("0");
                 httpResponseEntity.setMessage("无用户信息");
-            }
-            else{
+            } else {
                 httpResponseEntity.setCode("666");
                 httpResponseEntity.setData(hasUser);
                 httpResponseEntity.setMessage("登陆成功");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -65,22 +61,20 @@ public class UserController {
 
     //添加用户
     @RequestMapping(value = "/addUserInfo", method = RequestMethod.POST, headers = "Accept=application/json")
-    public HttpResponseEntity addUserInfo(@RequestBody UserEntity userEntity){
+    public HttpResponseEntity addUserInfo(@RequestBody UserEntity userEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-        try{
+        try {
             int result = userService.addUserInfo(userEntity);
-            if(result != 0) {
+            if (result != 0) {
                 httpResponseEntity.setCode("666");
                 httpResponseEntity.setData(result);
                 httpResponseEntity.setMessage("创建成功");
-            }
-            else{
+            } else {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(0);
+//                httpResponseEntity.setData(0);
                 httpResponseEntity.setMessage("创建失败");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
@@ -89,22 +83,20 @@ public class UserController {
 
     //修改用户
     @RequestMapping(value = "/modifyUserInfo", method = RequestMethod.POST, headers = "Accept=application/json")
-    public HttpResponseEntity modifyUserInfo(@RequestBody UserEntity userEntity){
+    public HttpResponseEntity modifyUserInfo(@RequestBody UserEntity userEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-        try{
+        try {
             int result = userService.modifyUserInfo(userEntity);
-            if(result != 0) {
+            if (result != 0) {
                 httpResponseEntity.setCode("666");
                 httpResponseEntity.setData(result);
                 httpResponseEntity.setMessage("修改成功");
-            }
-            else{
+            } else {
                 httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(0);
+//                httpResponseEntity.setData(0);
                 httpResponseEntity.setMessage("修改失败");
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return httpResponseEntity;
@@ -112,22 +104,29 @@ public class UserController {
 
     //用户删除
     @RequestMapping(value = "/deleteUserinfo", method = RequestMethod.POST, headers = "Accept=application/json")
-    public HttpResponseEntity deleteUser(@RequestBody UserEntity userEntity){
+    public HttpResponseEntity deleteUserInfo(@RequestBody UserEntity userEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
-        try{
+        try {
             int result = userService.deleteUserByName(userEntity);
-            if(result != 0) {
+            List<UserEntity> list = userService.queryUserList(userEntity);
+
+//            for (UserEntity u : list) {
+//                if (u.getUsername().equals(userEntity.getUsername())) {
+//                    result = Integer.parseInt(u.getId());
+//                } else {
+//                    result = 0;
+//                }
+//            }
+            if (result == 0) {
+                httpResponseEntity.setCode("0");
+//                httpResponseEntity.setData(0);
+                httpResponseEntity.setMessage("删除失败");
+            } else {
                 httpResponseEntity.setCode("666");
                 httpResponseEntity.setData(result);
                 httpResponseEntity.setMessage("删除成功");
             }
-            else{
-                httpResponseEntity.setCode("0");
-                httpResponseEntity.setData(0);
-                httpResponseEntity.setMessage("删除失败");
-            }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }

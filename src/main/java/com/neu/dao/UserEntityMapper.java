@@ -31,7 +31,7 @@ public interface UserEntityMapper {
      * @date: 2023/6/1 12:32
      * @version: 1.0
      */
-    int deleteUserById(UserEntity userEntity);
+    int deleteUserByName(UserEntity userEntity);
 
     /**
      * @descriptions: 根据主键修改用户信息

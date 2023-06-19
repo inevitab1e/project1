@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService{
+public class UserService {
     @Autowired
     private UserEntityMapper userEntityMapper;
 
-    public List<UserEntity> queryUserList(UserEntity userEntity){
+    public List<UserEntity> queryUserList(UserEntity userEntity) {
         List<UserEntity> queryUserList = userEntityMapper.queryUserList(userEntity);
         return queryUserList;
     }
@@ -21,10 +21,11 @@ public class UserService{
 
     public int addUserInfo(UserEntity userEntity) {
         userEntity.setId(UUIDUtil.getOneUUID());
+        userEntity.setStatus("1");
         int userResult = userEntityMapper.insert(userEntity);
-        if (userResult != 0){
-            return 3;
-        }else {
+        if (userResult == 0) {
+            return 0;//数字0代表用户不存在
+        } else {
             return userResult;
         }
     }
@@ -37,7 +38,7 @@ public class UserService{
 
 
     public int deleteUserByName(UserEntity userEntity) {
-        int userResult = userEntityMapper.deleteUserById(userEntity);
+        int userResult = userEntityMapper.deleteUserByName(userEntity);
         return userResult;
     }
 
